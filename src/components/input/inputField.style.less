@@ -1,0 +1,46 @@
+@import "../../styles/variables.less";
+.input-field {
+  position: relative;
+
+  .input-label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: @font-color-light;
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+
+  .input-element {
+    width: 100%;
+    padding: 16px;
+    // padding-top: 20px;
+    font-size: 16px;
+    border: 1px solid #F2F2F2;
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+      border-color: #ccc;
+    }
+  }
+
+  .input-icon {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    color: @font-color-light;
+    user-select: none;
+  }
+
+  &.focused .input-label {
+    top: 10px;
+    left: 16px;
+    font-size: 12px;
+    color: @font-color-light;
+  }
+}

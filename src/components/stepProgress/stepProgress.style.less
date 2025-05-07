@@ -1,0 +1,37 @@
+.step-progress {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #F2F2F2; // Default circle color
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+  }
+  
+  .circle.active {
+    background-color: #f4bd44; // Active circle color
+  }
+  
+  .line {
+    flex: 1;
+    height: 14px;
+    background-color: #ddd; // Default line color
+    transition: background-color 0.3s ease;
+    z-index: 0;
+    margin: 0 -5px;
+  }
+  
+  .line.active {
+    background-color: #f4bd44; // Active line color
+  }

@@ -1,0 +1,151 @@
+@import "../../styles/variables.less";
+
+.gallery {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+
+  .info-banner {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-shadow: 0px -2px 18px 0px #8080801a;
+    padding-left: 70px;
+    padding-right: 70px;
+    justify-content: space-between;
+    align-items: center;
+
+    .user-info {
+      display: flex;
+      gap: 50px;
+      justify-content: space-between;
+    }
+
+    .logout {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ec4466;
+    }
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    height: calc(100vh - 70px);
+    padding: 70px;
+    background-color: transparent;
+    // overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: relative;
+    overflow: auto;
+
+    .items {
+      display: grid;
+      gap: 20px;
+      padding-top: 20px;
+      width: 100%;
+
+      .game-card {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        align-self: start;
+        .game-cover {
+          width: 100%;
+          height: auto;
+          border-radius: 4px;
+          object-fit: cover;
+        }
+  
+        @media (max-width: 768px) {
+          .game-cover {
+            min-width: calc(50% - 10px);
+          }
+        }
+        .hover-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+          opacity: 0; /* Hidden by default */
+          transition: opacity 0.3s ease; /* Smooth transition */
+          z-index: 1; /* Ensure it appears above the image */
+        }
+      
+        &:hover .hover-overlay {
+          opacity: 1; /* Show the overlay on hover */
+        }
+  
+        .game-name {
+          display: none; /* Hide by default */
+          position: absolute;
+          bottom: 12px; /* Position at the bottom-left */
+          left: 12px;
+          color: #fff; /* White text color */
+          z-index: 1;
+          font-weight: 400;
+          font-size: 18px;
+        }
+        &:hover .game-name {
+          display: block; /* Show on hover */
+          background-color: transparent;
+        }
+      }
+
+    }
+
+    .filters-panel {
+      padding: 32px;
+      gap: 32px;
+      width: 412px;
+      height: 100%;
+      border-radius: 8px;
+      border: 1px solid #f2f2f2;
+      background: #ffffff;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      top: 0;
+      align-self: flex-start;
+      position: sticky;
+      flex-shrink: 0;
+
+      > div {
+        width: 100%;
+      }
+
+      .section-title {
+        color: @font-color-light;
+      }
+
+      .panel-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: auto;
+      }
+    }
+  }
+  .main-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
