@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./auth.style.less";
-import LogoComponent from "../../components/logo/logo.component";
-import eye from "../../assets/eye.svg";
-import spinner from "../../assets/spinner.svg";
-import InputField from "../../components/input/inputField.component";
-import { AuthenticateUser } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+
+import eye from "~@/assets/eye.svg";
+import spinner from "~@/assets/spinner.svg";
+import InputField from "~@/components/input/inputField.component";
+import LogoComponent from "~@/components/logo/logo.component";
+import { AuthenticateUser } from "~@/services/authService";
+
 
 const AuthComponent = () => {
   const navigate = useNavigate();
@@ -34,11 +36,11 @@ const AuthComponent = () => {
     setIsLoading(true);
     
     try {
-      const data = await AuthenticateUser(trimmedUsername, trimmedPassword);
-      console.log("Login successful:", data);
+      const _data = await AuthenticateUser(trimmedUsername, trimmedPassword);
       setIsLoading(false);
       navigate("/"); // Redirect to the gallery page
     } catch (error) {
+      setIsLoading(false);
       alert(error.message || "An error occurred. Please try again later.");
     }
   };

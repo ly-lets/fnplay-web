@@ -1,3 +1,4 @@
+
 export const AuthenticateUser = async (username, password) => {
   try {
     const response = await fetch("/api/v1/login", {
@@ -13,33 +14,34 @@ export const AuthenticateUser = async (username, password) => {
     }
 
     const data = await response.json();
-    return data; // Return the response data
+    return data; 
   } catch (error) {
     console.error("Error during login:", error);
-    throw error; // Re-throw the error for the caller to handle
+    throw error; 
   }
 };
 
-export const VerifySession = async () => {  
-  try {
-    const response = await fetch("/api/v1/verify-session", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+export const VerifySession = async () => {
+  console.log("Verifying session...");
+  const response = await fetch("/api/v1/verify-session", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log("Session verification response:", response);
+  // if (!response.ok) {
+  //   const errorMessage = `Session verification failed with status ${response.status}`;
+  //   if (response.status === 401) {
+  //     throw new Error("Unauthorized: " + errorMessage);
+  //   }
+  //   throw new Error(errorMessage);
+  // }
 
-    if (!response.ok) {
-      throw new Error("Session verification failed.");
-    }
-
-    const data = await response.json();
-    return data; 
-  } catch (error) {
-    console.error("Error during session verification:", error);
-    throw error; 
-  }
-}
+  const data = await response.json();
+  console.log("Session verification data:", data);
+  return data;
+};
 
 export const LogoutUser = async () => {
   try {
@@ -55,9 +57,9 @@ export const LogoutUser = async () => {
     }
 
     const data = await response.json();
-    return data; 
+    return data;
   } catch (error) {
     console.error("Error during logout:", error);
-    throw error; 
+    throw error;
   }
 };

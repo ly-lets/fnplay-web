@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { sortingFilters } from "../../../utils/constants";
+import React from "react";
 
-const SortingFilter = ({}) => {
+import { sortingFilters } from "~@/utils/constants";
+
+const SortingFilter = ({ className }) => {
   const queryClient = useQueryClient();
 
   // Initialize "filter-sorting" in React Query
@@ -25,7 +26,7 @@ const SortingFilter = ({}) => {
   };
 
   return (
-    <div className="filter-group-wrapper">
+    <div className={`filter-group-wrapper ${className}`}>
       <header className="header">Sorting</header>
       <div className="filter-group-container">
         {sortingFilters.map((filter) => (

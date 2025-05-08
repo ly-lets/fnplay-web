@@ -1,7 +1,8 @@
-import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import InputField from "../../../components/input/inputField.component";
-import magnify from "../../../assets/magnify.svg";
+import React from "react";
+
+import magnify from "~@/assets/magnify.svg";
+import InputField from "~@/components/input/inputField.component";
 
 
 const SearchFilter = () => {

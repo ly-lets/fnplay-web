@@ -1,10 +1,11 @@
-import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useProviders } from "../../../services/galleryService";
-import { keysOfFilters } from "../../../utils/constants";
+import React from "react";
+
+import { useProviders } from "~@/services/galleryService";
+import { keysOfFilters } from "~@/utils/constants";
 // import "./providerFilter.style.less";
 
-const ProviderFilter = () => {
+const ProviderFilter = ({className}) => {
   const queryClient = useQueryClient();
 
   // Fetch providers using useProviders hook
@@ -51,7 +52,7 @@ const ProviderFilter = () => {
   };
 
   return (
-    <div className="filter-group-wrapper">
+    <div className={`filter-group-wrapper ${className}`}>
       <header className="header">Providers</header>
       {isLoading ? (
         <div>Loading...</div>

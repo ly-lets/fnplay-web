@@ -1,8 +1,9 @@
-import { useGames } from "../../../services/galleryService";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { keysOfFilters } from "../../../utils/constants";
-import placeholderImage from "../../../assets/img-holder.svg"; // Placeholder image
+
+import placeholderImage from "~@/assets/img-holder.svg"; // Placeholder image
+import { useGames } from "~@/services/galleryService";
+import { keysOfFilters } from "~@/utils/constants";
 
 const FilteredGames = ({onFilteredResultChanged = () =>{}}) => {
   const [filteredGames, setFilteredGames] = useState([]);
@@ -52,13 +53,6 @@ const FilteredGames = ({onFilteredResultChanged = () =>{}}) => {
       setFilteredGames([]);
       return;
     }
-    console.log("Filtering games based on selected filters and search keyword");
-    console.log("Providers:", providers);
-    console.log("Groups:", groups);
-    console.log("Sorting:", sorting);
-    console.log("Search:", search);
-    console.log("Games:", games.length);
-
     let filtered = games.filter((game) => {
       const matchesProvider =
         providers.length === 0 ||

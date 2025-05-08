@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useGroups } from "../../../services/galleryService";
-// import "./groupsFilter.style.less";
+import React from "react";
 
-const GroupsFilter = ({   }) => {
+import { useGroups } from "~@/services/galleryService";
+
+const GroupsFilter = ({  className }) => {
   const queryClient = useQueryClient();
 
   // Fetch groups using useGroups hook
@@ -41,7 +41,7 @@ const GroupsFilter = ({   }) => {
   };
 
   return (
-    <div className="filter-group-wrapper">
+    <div className={`filter-group-wrapper ${className}`}>
       <header className="header">Groups</header>
       {isLoading ? (
         <div>Loading...</div>

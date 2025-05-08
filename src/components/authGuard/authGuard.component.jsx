@@ -1,34 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { VerifySession } from "../../services/authService";
-import Spinner from "../spinner/spinner.component";
+
+import { setCookie } from "../../utils/cookieHelper";
+import Spinner from "~@/components/spinner/spinner.component";
+import { VerifySession } from "~@/services/authService";
+import { userLogin } from "~@/utils/constants";
 
 const AuthGuard = ({ children }) => {
-  const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isValidSession, setIsValidSession] = useState(false);
 
-  const { data: session, isLoading } = useQuery({
-    queryKey: ["session"],
-    queryFn: async () => {
-      const result = await VerifySession();
-      console.log("Session result:", result);
-      if (result.user) {
-        return { username: result.user, valid: true };
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const result = await VerifySession();
+        if (result && result.user) {
+          sessionStorage.setItem(`${userLogin}`, JSON.stringify(result.user));
+          setCookie(userLogin, result.user, 1); // Set the session cookie
+          setIsValidSession(true);
+        } else {
+          setIsValidSession(false);
+        }
+      } catch (error) {
+        console.error("Session verification failed:", error.message);
+        setIsValidSession(false);
+      } finally {
+        setIsLoading(false);
       }
-      throw new Error("Invalid session");
-    },
-    onError: () => {
-      queryClient.setQueryData(["session"], { username: null, valid: false });
-    },
-    initialData: { username: null, valid: null },
-    refetchOnWindowFocus: false,
-  });
-console.log("Session data:", session);
-  if (isLoading || session.username === null) {
+    };
+
+    checkSession();
+  }, []);
+
+  if (isLoading) {
     return <Spinner />;
   }
 
-  return session.valid ? children : <Navigate to="/auth" />;
+  if (!isValidSession) {
+    return <Navigate to="/auth" replace />;
+  }
+
+  return children;
 };
 
 export default AuthGuard;

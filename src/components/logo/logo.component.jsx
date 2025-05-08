@@ -1,4 +1,4 @@
-import brandLogo from "../../assets/logo.svg";
+import brandLogo from "~@/assets/logo.svg";
 
 const LogoComponent = () => {
   return (

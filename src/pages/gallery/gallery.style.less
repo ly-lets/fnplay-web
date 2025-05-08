@@ -69,7 +69,7 @@
           border-radius: 4px;
           object-fit: cover;
         }
-  
+
         @media (max-width: 768px) {
           .game-cover {
             min-width: calc(50% - 10px);
@@ -81,16 +81,21 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+          background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+          ); /* Semi-transparent black overlay */
           opacity: 0; /* Hidden by default */
           transition: opacity 0.3s ease; /* Smooth transition */
           z-index: 1; /* Ensure it appears above the image */
         }
-      
+
         &:hover .hover-overlay {
           opacity: 1; /* Show the overlay on hover */
         }
-  
+
         .game-name {
           display: none; /* Hide by default */
           position: absolute;
@@ -106,7 +111,6 @@
           background-color: transparent;
         }
       }
-
     }
 
     .filters-panel {
@@ -141,6 +145,67 @@
         align-items: center;
         width: 100%;
         margin-top: auto;
+      }
+    }
+  }
+  .mobile.toggle-panel {
+    display: none;
+    color: #3f53be;
+    &:hover {
+      background-color: #fcfafa;
+    }
+  }
+
+  @media (max-width: 428px) {
+    .info-banner {
+      padding-left: 32px;
+      padding-right: 32px;
+      .user-info{
+        gap: 20px;
+      }
+    }
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      .filters-panel {
+        order: 1;
+        z-index: 2;
+        height: auto;
+        width: 100%;
+        margin-top: 0px;
+
+        .m-providers {
+          display: none;
+        }
+        .m-groups {
+          display: none;
+        }
+        .m-sorting {
+          display: none;
+        }
+        .m-footer {
+          display: none;
+        }
+      }
+      .items {
+        order: 2;
+        grid-template-columns: repeat(
+          2,
+          1fr
+        ) !important; /* Change to 2 columns */
+      }
+
+      .filter-group-wrapper.gallery-column {
+        display: none;
+      }
+
+      .mobile.toggle-panel {
+        display: block;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
       }
     }
   }
